@@ -3,6 +3,7 @@ import confetti from "canvas-confetti";
 import oiiai from "../../assets/oiiai.gif";
 import happyCat from "../../assets/happy_cat.gif";
 import birthdayHat from "../../assets/birthday_hat.webp";
+import partyblower from "../../assets/partyblower.mp3";
 import "./mainHub.css";
 
 const COLORS = ["#C0172B", "#D4AF37", "#F2A0A8", "#FFF5F5", "#7A0E1A"];
@@ -15,6 +16,9 @@ interface MainHubProps {
 
 const MainHub = ({ onNavigate }: MainHubProps) => {
   useEffect(() => {
+    const sfx = new Audio(partyblower);
+    sfx.volume = 0.5;
+    sfx.play().catch(() => {});
     confetti({
       particleCount: 120,
       angle: 60,
