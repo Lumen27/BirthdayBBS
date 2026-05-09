@@ -1,37 +1,31 @@
-import runningCat from "./assets/running_cat.jpg";
+import { useState } from "react";
 import "./App.css";
+import Intro from "./components/intro/intro";
+import MainHub from "./components/mainHub/mainHub";
+import Congrats from "./components/congrats/congrats";
 
-const colors = [
-  { name: "Mint", description: "Yours", hex: "#ADEBB3" },
-  { name: "Lavender", description: "Dreamy purple", hex: "#C9B8E8" },
-  { name: "Blush", description: "Soft pink", hex: "#F4B8C8" },
-  { name: "Sky", description: "Pastel blue", hex: "#B8D8ED" },
-  { name: "Star", description: "Warm yellow", hex: "#FAE5A0" },
-  { name: "Cream", description: "Off-white bg", hex: "#FEF9F2" },
-  { name: "Ink", description: "Deep navy (text)", hex: "#2C3566" },
-];
+type View = "intro" | "mainHub" | "congrats";
 
 function App() {
-  return (
-    <>
-      <div className="cat-section">
-        <img src={runningCat} alt="Running cat" className="cat-img" />
-      </div>
-      <div>
-        <button>123312</button>
-      </div>
-      <div className="palette">
-        {colors.map((color) => (
-          <div key={color.hex} className="swatch">
-            <div className="square" style={{ background: color.hex }} />
-            <p className="swatch-name">{color.name}</p>
-            <p className="swatch-desc">{color.description}</p>
-            <p className="swatch-hex">{color.hex}</p>
-          </div>
-        ))}
-      </div>
-    </>
-  );
+  const [view, setView] = useState<View>("intro");
+  const [camStream, setCamStream] = useState<MediaStream | null>(null);
+
+  const handleStart = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: true,
+        audio: false,
+      });
+      setCamStream(stream);
+    } catch {
+      // permission denied — continue without cam
+    }
+    setView("mainHub");
+  };
+
+  if (view === "intro") return <Intro onStart={handleStart} />;
+  if (view === "congrats") return <Congrats stream={camStream} />;
+  return <MainHub onNavigate={setView} />;
 }
 
 export default App;

@@ -2,8 +2,9 @@ html,
 body {
   margin: 0;
   height: 100%;
-  background-color: var(--color-mint);
+  background-color: var(--color-pearl);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  font-family: "Cormorant Garamond", Georgia, serif;
 }
