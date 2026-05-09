@@ -1,7 +1,38 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx tsc *)"
+      "Bash(npx tsc *)",
+      "Bash(npm install *)",
+      "Skill(update-config)",
+      "PowerShell($s = Get-Content .claude\\\\settings.local.json | ConvertFrom-Json; $s.hooks.PostToolUse[0].hooks[0].command; $s.hooks.FileChanged[0].hooks[0].command)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$d = [Console]::In.ReadToEnd() | ConvertFrom-Json; $f = $d.tool_input.file_path; if ($f -match '\\.css$') { npx prettier --write $f; npx stylelint --fix $f }",
+            "shell": "powershell",
+            "statusMessage": "Formatting CSS..."
+          }
+        ]
+      }
+    ],
+    "FileChanged": [
+      {
+        "matcher": "*.css",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$d = [Console]::In.ReadToEnd() | ConvertFrom-Json; $f = $d.file_path; if ($f -match '\\.css$') { npx prettier --write $f; npx stylelint --fix $f }",
+            "shell": "powershell",
+            "statusMessage": "Formatting CSS..."
+          }
+        ]
+      }
     ]
   }
 }
