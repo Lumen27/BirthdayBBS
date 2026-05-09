@@ -44,13 +44,34 @@
   background: #5a8a3c;
 }
 
-.peenar-enemy {
+.peenar-enemy-wrap {
   position: absolute;
-  width: 40px;
-  height: 40px;
-  background: #c0172b;
+  width: 80px;
+  height: 120px;
+}
+
+.peenar-speech {
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  background: #fff;
+  border: 2px solid #1a1a1a;
+  border-radius: 12px;
+  padding: 3px 8px;
+  white-space: nowrap;
+  z-index: 3;
+}
+
+.peenar-enemy {
+  width: 80px;
+  height: 120px;
+  object-fit: cover;
   border-radius: 4px;
-  border: 2px solid #7a0e1a;
   z-index: 2;
 }
 

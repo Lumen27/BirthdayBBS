@@ -2,11 +2,15 @@ import { type MouseEvent, useCallback, useEffect, useRef, useState } from "react
 import stealsBalls from "../../assets/steals_balls.jpg";
 import evilLarry from "../../assets/evil_larry.webp";
 import explosionGif from "../../assets/explosion.gif";
+import tickleSfx from "../../assets/cartoon-tickle.mp3";
+import enemyIdle from "../../assets/idle.png";
+import enemyShockedImg from "../../assets/shocked.png";
 import "./peenargame.css";
 
 const GAME_W = 1000;
 const PLAYER_X = 110;
-const ENEMY_X = 50;
+const ENEMY_X = 0;
+const ENEMY_SIZE = 120;
 const PLAYER_SIZE = 40;
 const OBS_W = 30;
 const OBS_H = 50;
@@ -14,12 +18,12 @@ const GROUND_Y = 440;
 const PLAYER_GROUND = GROUND_Y - PLAYER_SIZE;
 const GRAVITY = 0.7;
 const JUMP_VEL = -14;
-const OBS_SPEED = 5;
+const OBS_SPEED = 7.5;
 const WIN_COUNT = 5;
-const SPAWN_BASE = 90;
+const SPAWN_BASE = 50;
 const CYLINDER_X = 600;
 const CYLINDER_H = 150;
-const ENTER_SPEED = 8;
+const ENTER_SPEED = 12;
 
 interface Obs {
   id: number;
@@ -27,7 +31,7 @@ interface Obs {
   passed: boolean;
 }
 
-type Phase = "idle" | "playing" | "entering" | "dead" | "won";
+type Phase = "idle" | "starting" | "playing" | "entering" | "dead" | "won";
 
 interface RenderSnap {
   playerTop: number;
@@ -45,6 +49,7 @@ interface PeenargameProps {
 const Peenargame = ({ onBack }: PeenargameProps) => {
   const [phase, setPhase] = useState<Phase>("idle");
   const [showExplosion, setShowExplosion] = useState(false);
+  const [enemyShocked, setEnemyShocked] = useState(false);
   const [snap, setSnap] = useState<RenderSnap>({
     playerTop: PLAYER_GROUND,
     playerX: PLAYER_X,
@@ -95,7 +100,13 @@ const Peenargame = ({ onBack }: PeenargameProps) => {
         cleared: 0,
         cylinderVisible: false,
       });
-      setPhase("playing");
+      setPhase("starting");
+      const sfx = new Audio(tickleSfx);
+      sfx.play().catch(() => {});
+      sfx.addEventListener("ended", () => {
+        setEnemyShocked(true);
+        setTimeout(() => setPhase("playing"), 2000);
+      });
     } else if (phase === "playing") {
       tryJump();
     }
@@ -166,7 +177,10 @@ const Peenargame = ({ onBack }: PeenargameProps) => {
             playerTop.current < GROUND_Y
           );
         });
-        if (hit) { setPhase("dead"); return; }
+        if (hit) {
+          setPhase("dead");
+          return;
+        }
       }
 
       // Spawn only up to WIN_COUNT total obstacles
@@ -174,7 +188,7 @@ const Peenargame = ({ onBack }: PeenargameProps) => {
         spawnIn.current -= 1;
         if (spawnIn.current <= 0) {
           obstacles.current.push({ id: nextId.current++, x: GAME_W, passed: false });
-          spawnIn.current = SPAWN_BASE + Math.floor(Math.random() * 50);
+          spawnIn.current = SPAWN_BASE + Math.floor(Math.random() * 20);
         }
       }
 
@@ -236,6 +250,7 @@ const Peenargame = ({ onBack }: PeenargameProps) => {
     e.stopPropagation();
     resetRefs();
     setShowExplosion(false);
+    setEnemyShocked(false);
     setPhase("idle");
   };
 
@@ -261,7 +276,21 @@ const Peenargame = ({ onBack }: PeenargameProps) => {
           />
         )}
 
-        <div className="peenar-enemy" style={{ top: PLAYER_GROUND, left: snap.enemyX }} />
+        <div
+          className="peenar-enemy-wrap"
+          style={{ left: snap.enemyX, top: GROUND_Y - ENEMY_SIZE }}
+        >
+          {enemyShocked && <span className="peenar-speech">my peanuts!</span>}
+          <img
+            src={enemyShocked ? enemyShockedImg : enemyIdle}
+            className="peenar-enemy"
+            style={{
+              transform: enemyShocked ? "scaleX(-1)" : undefined,
+              objectPosition: enemyShocked ? "center top" : "center 10%",
+            }}
+            alt=""
+          />
+        </div>
 
         <div className="peenar-player" style={{ top: snap.playerTop, left: snap.playerX }}>
           <img src={stealsBalls} className="player-base" alt="" />
@@ -297,7 +326,7 @@ const Peenargame = ({ onBack }: PeenargameProps) => {
 
         {phase === "won" && (
           <div className="peenar-overlay">
-            <p>thanks for playing! 🎉</p>
+            <p>Peenar exploded! 🎉</p>
             <button onClick={handleRestart}>play again</button>
           </div>
         )}
