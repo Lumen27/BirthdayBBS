@@ -75,12 +75,12 @@ const MainHub = ({ onNavigate }: MainHubProps) => {
       <img src={happyCat} alt="happy cat" className="happy-cat-corner" />
       <h1 className="hub-title">Happy Birthday Bebas 🎂✨</h1>
       <div className="hub-buttons">
-        <button className="hub-btn">Message 💌</button>
-        <button className="hub-btn">Photos 📸</button>
-        <button className="hub-btn">Music 🎵</button>
         <button className="hub-btn" onClick={() => onNavigate("congrats")}>
-          Surprise 🎁
+          Bday surprise 🎁
         </button>
+        <button className="hub-btn">Peenar game 😳</button>
+        <button className="hub-btn">Basta game 😾</button>
+        <button className="hub-btn">Bobs game 👊</button>
       </div>
     </div>
   );
