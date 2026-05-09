@@ -98,10 +98,24 @@
   z-index: 2;
 }
 
-.dancing-cat-corner {
+.dancing-cat-wrapper {
   position: absolute;
   bottom: 40px;
   right: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.us-label {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.4rem;
+  color: var(--color-crimson);
+  margin: 0;
+}
+
+.dancing-cat-corner {
   width: 180px;
   height: auto;
 }

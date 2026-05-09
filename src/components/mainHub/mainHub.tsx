@@ -66,7 +66,10 @@ const MainHub = ({ onNavigate }: MainHubProps) => {
       <img src={birthdayHat} alt="" className="hat-top-right" />
       <img src={birthdayHat} alt="" className="hat-bottom-left" />
       <img src={oiiai} alt="oiiai cat" className="oiiai-corner" />
-      <img src={dancingCat} alt="dancing cat" className="dancing-cat-corner" />
+      <div className="dancing-cat-wrapper">
+        <p className="us-label">us?</p>
+        <img src={dancingCat} alt="dancing cat" className="dancing-cat-corner" />
+      </div>
       <img src={susCat} alt="sus cat" className="sus-cat-corner" />
       <img src={colaZero} alt="" className="cola-zero-corner" />
       <img src={happyCat} alt="happy cat" className="happy-cat-corner" />
