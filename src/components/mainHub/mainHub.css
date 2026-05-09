@@ -51,6 +51,7 @@
   text-align: center;
   margin: 0 0 40px;
   letter-spacing: 0.04em;
+  z-index: 201;
 }
 
 .hub-buttons {
@@ -58,6 +59,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 16px;
   margin-top: 32px;
+  z-index: 201;
 }
 
 .hub-btn {
