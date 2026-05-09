@@ -24,7 +24,7 @@ function App() {
   };
 
   if (view === "intro") return <Intro onStart={handleStart} />;
-  if (view === "congrats") return <Congrats stream={camStream} />;
+  if (view === "congrats") return <Congrats stream={camStream} onBack={() => setView("mainHub")} />;
   return <MainHub onNavigate={setView} />;
 }
 

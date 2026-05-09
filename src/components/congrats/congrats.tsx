@@ -7,9 +7,10 @@ const COLORS = ["#C0172B", "#D4AF37", "#F2A0A8", "#FFF5F5", "#7A0E1A"];
 
 interface CongratsProps {
   stream: MediaStream | null;
+  onBack: () => void;
 }
 
-const Congrats = ({ stream }: CongratsProps) => {
+const Congrats = ({ stream, onBack }: CongratsProps) => {
   const webcamRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -68,6 +69,9 @@ const Congrats = ({ stream }: CongratsProps) => {
         </div>
         <p className="side-message message-right">Bro had to leave early 😢</p>
       </div>
+      <button className="back-btn" onClick={onBack}>
+        Back to menu
+      </button>
     </div>
   );
 };
