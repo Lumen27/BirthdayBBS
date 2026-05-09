@@ -1,0 +1,145 @@
+.peenar-page {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.peenar-back-btn {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1rem;
+  padding: 10px 32px;
+  border-radius: 50px;
+}
+
+.peenar-title {
+  font-family: Cinzel, Georgia, serif;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  color: var(--color-crimson);
+  margin: 0;
+}
+
+.peenar-game {
+  position: relative;
+  width: 1000px;
+  height: 500px;
+  background: #87ceeb;
+  border: 2px solid #5a8a3c;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.peenar-ground {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 440px;
+  height: 60px;
+  background: #5a8a3c;
+}
+
+.peenar-enemy {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: #c0172b;
+  border-radius: 4px;
+  border: 2px solid #7a0e1a;
+  z-index: 2;
+}
+
+.peenar-player {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  overflow: visible;
+}
+
+.player-base {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.player-overlay {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+  left: 28px;
+  top: 0;
+}
+
+.peenar-obstacle {
+  position: absolute;
+  width: 30px;
+  height: 50px;
+  background: #8b5e3c;
+  border-radius: 4px;
+  border: 2px solid #5c3d1e;
+}
+
+.peenar-explosion {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  z-index: 4;
+  transform: translate(-40px, -40px);
+}
+
+.peenar-cylinder {
+  position: absolute;
+  width: 80px;
+  height: 150px;
+  background: linear-gradient(to right, #555, #bbb, #999, #bbb, #555);
+  border-radius: 40px / 16px;
+  border: 2px solid #444;
+  z-index: 1;
+}
+
+.peenar-score {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.2rem;
+  color: #1a1a1a;
+}
+
+.peenar-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background: rgb(0 0 0 / 55%);
+  z-index: 3;
+}
+
+.peenar-overlay p {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 2rem;
+  color: var(--color-pearl);
+  margin: 0;
+  text-align: center;
+}
+
+.peenar-overlay button {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1rem;
+  padding: 10px 28px;
+  border-radius: 50px;
+}

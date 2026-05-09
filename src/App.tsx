@@ -3,8 +3,9 @@ import "./App.css";
 import Intro from "./components/intro/intro";
 import MainHub from "./components/mainHub/mainHub";
 import Congrats from "./components/congrats/congrats";
+import Peenargame from "./components/peenargame/peenargame";
 
-type View = "intro" | "mainHub" | "congrats";
+type View = "intro" | "mainHub" | "congrats" | "peenargame";
 
 function App() {
   const [view, setView] = useState<View>("intro");
@@ -25,6 +26,7 @@ function App() {
 
   if (view === "intro") return <Intro onStart={handleStart} />;
   if (view === "congrats") return <Congrats stream={camStream} onBack={() => setView("mainHub")} />;
+  if (view === "peenargame") return <Peenargame onBack={() => setView("mainHub")} />;
   return <MainHub onNavigate={setView} />;
 }
 
