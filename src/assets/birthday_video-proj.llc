@@ -1,0 +1,12 @@
+{
+  version: 2,
+  mediaFileName: 'birthday_video.MP4',
+  cutSegments: [
+    {
+      start: 0,
+      end: 16.4,
+      name: '',
+      selected: true,
+    },
+  ],
+}
