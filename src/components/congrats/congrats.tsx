@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import confetti from "canvas-confetti";
 import birthdayVideo from "../../assets/birthday_video.MP4";
+import cryingPrincess from "../../assets/cryingprincess.jpg";
 import "./congrats.css";
 
 const COLORS = ["#C0172B", "#D4AF37", "#F2A0A8", "#FFF5F5", "#7A0E1A"];
@@ -65,7 +66,11 @@ const Congrats = ({ stream, onBack }: CongratsProps) => {
         <p className="side-message message-left">Hat stolen, nooo 😭</p>
         <div className="video-wrapper">
           <video className="congrats-video" src={birthdayVideo} autoPlay playsInline />
-          <video ref={webcamRef} className="webcam-overlay" autoPlay muted playsInline />
+          {stream ? (
+            <video ref={webcamRef} className="webcam-overlay" autoPlay muted playsInline />
+          ) : (
+            <img src={cryingPrincess} className="webcam-overlay" alt="" />
+          )}
         </div>
         <p className="side-message message-right">Bro had to leave early 😢</p>
       </div>

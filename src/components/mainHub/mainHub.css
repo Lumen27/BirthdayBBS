@@ -70,6 +70,32 @@
   min-width: 160px;
 }
 
+.sus-cat-corner {
+  position: absolute;
+  bottom: 40px;
+  left: 120px;
+  width: 180px;
+  height: auto;
+}
+
+.cola-zero-corner {
+  position: absolute;
+  bottom: 38px;
+  left: 142px;
+  width: 40px;
+  height: auto;
+  transform: rotate(-30deg);
+  z-index: 2;
+}
+
+.dancing-cat-corner {
+  position: absolute;
+  bottom: 40px;
+  right: 120px;
+  width: 180px;
+  height: auto;
+}
+
 .cat-section {
   display: flex;
   justify-content: center;

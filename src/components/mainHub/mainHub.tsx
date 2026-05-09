@@ -2,6 +2,9 @@ import { useEffect } from "react";
 import confetti from "canvas-confetti";
 import oiiai from "../../assets/oiiai.gif";
 import happyCat from "../../assets/happy_cat.gif";
+import dancingCat from "../../assets/dancingcat.gif";
+import susCat from "../../assets/suscat.jpg";
+import colaZero from "../../assets/colazero.webp";
 import birthdayHat from "../../assets/birthday_hat.webp";
 import partyblower from "../../assets/partyblower.mp3";
 import "./mainHub.css";
@@ -62,6 +65,9 @@ const MainHub = ({ onNavigate }: MainHubProps) => {
       <img src={birthdayHat} alt="" className="hat-top-left" />
       <img src={birthdayHat} alt="" className="hat-top-right" />
       <img src={oiiai} alt="oiiai cat" className="oiiai-corner" />
+      <img src={dancingCat} alt="dancing cat" className="dancing-cat-corner" />
+      <img src={susCat} alt="sus cat" className="sus-cat-corner" />
+      <img src={colaZero} alt="" className="cola-zero-corner" />
       <img src={happyCat} alt="happy cat" className="happy-cat-corner" />
       <h1 className="hub-title">Happy Birthday Bebas 🎂✨</h1>
       <div className="hub-buttons">
