@@ -64,6 +64,7 @@ const MainHub = ({ onNavigate }: MainHubProps) => {
     <div className="main-hub">
       <img src={birthdayHat} alt="" className="hat-top-left" />
       <img src={birthdayHat} alt="" className="hat-top-right" />
+      <img src={birthdayHat} alt="" className="hat-bottom-left" />
       <img src={oiiai} alt="oiiai cat" className="oiiai-corner" />
       <img src={dancingCat} alt="dancing cat" className="dancing-cat-corner" />
       <img src={susCat} alt="sus cat" className="sus-cat-corner" />

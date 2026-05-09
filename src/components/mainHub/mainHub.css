@@ -27,6 +27,16 @@
   z-index: 1;
 }
 
+.hat-bottom-left {
+  position: absolute;
+  bottom: 178px;
+  left: 174px;
+  width: 120px;
+  height: auto;
+  transform: rotate(10deg);
+  z-index: 1;
+}
+
 .oiiai-corner {
   position: absolute;
   top: 120px;
