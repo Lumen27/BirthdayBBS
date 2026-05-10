@@ -97,14 +97,15 @@
 }
 
 .character {
-  width: 28px;
-  height: 80px;
-  background: #111;
+  width: 84px;
+  height: 240px;
   position: absolute;
-  transform-origin: bottom center;
-  transform: rotateX(-90deg);
+  transform-origin: center calc(100% - 40px);
+  transform: rotateX(-90deg) rotateY(45deg);
   cursor: grab;
   user-select: none;
+  object-fit: cover;
+  display: block;
 }
 
 .character:active {
