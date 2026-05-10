@@ -115,6 +115,11 @@ const Bastagame = ({ onBack }: BastagameProps) => {
               <div className="floor" />
               <div className="wall-left" />
               <div className="wall-right" />
+              {imgState === "grabbed" && (
+                <div className="basta-speech" style={{ left: pos.x, top: pos.y - CHAR_H / 3 }}>
+                  ui!
+                </div>
+              )}
               <img
                 src={src}
                 alt=""
