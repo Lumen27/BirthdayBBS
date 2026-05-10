@@ -38,6 +38,7 @@ const Bastagame = ({ onBack }: BastagameProps) => {
   const [pos, setPos] = useState({ x: 130, y: 130 });
   const [imgState, setImgState] = useState<ImgState>("idle");
   const [yapOpen, setYapOpen] = useState(true);
+  const [showYap, setShowYap] = useState(true);
 
   useEffect(() => {
     const id = setInterval(() => setYapOpen((v) => !v), 1000);
@@ -118,9 +119,11 @@ const Bastagame = ({ onBack }: BastagameProps) => {
       <h1 className="basta-title">Basta game 😾</h1>
       <div className="basta-area">
         <div className="kek">
-          <div className="yap-overlay-bg">
-            <img src={yapOpen ? yapOpenImg : yapClosedImg} alt="" />
-          </div>
+          {showYap && (
+            <div className="yap-overlay-bg">
+              <img src={yapOpen ? yapOpenImg : yapClosedImg} alt="" />
+            </div>
+          )}
           <div className="scene">
             <div className="room">
               <div className="floor" />
@@ -142,10 +145,14 @@ const Bastagame = ({ onBack }: BastagameProps) => {
           </div>
         </div>
 
-        <div className="basta-bottom">
-          <div className="basta-bottom-main" />
-          <div className="basta-bottom-side" />
-        </div>
+        {showYap && (
+          <div className="basta-bottom">
+            <div className="basta-bottom-main">Wah! Wah! Wah! That&apos;s what you sound like!</div>
+            <div className="basta-bottom-side">
+              <button className="basta-corner-btn" onClick={() => setShowYap(false)}>Shut up and go to your corner!</button>
+            </div>
+          </div>
+        )}
       </div>
       <button className="basta-back-btn" onClick={onBack}>
         Back to menu
