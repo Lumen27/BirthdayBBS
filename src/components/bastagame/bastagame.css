@@ -1,0 +1,112 @@
+.basta-page {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.basta-title {
+  font-family: Cinzel, Georgia, serif;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  color: var(--color-crimson);
+  margin: 0;
+}
+
+.basta-area {
+  position: relative;
+  width: 1000px;
+  height: 700px;
+  border: 2px solid var(--color-gold);
+  border-radius: 8px;
+  background: var(--color-charcoal);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.basta-bottom {
+  height: 20%;
+  border-top: 2px solid var(--color-gold);
+  display: flex;
+}
+
+.basta-bottom-main {
+  flex: 4;
+  border-right: 2px solid var(--color-gold);
+}
+
+.basta-bottom-side {
+  flex: 1;
+}
+
+.basta-back-btn {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1rem;
+  padding: 10px 32px;
+  border-radius: 50px;
+}
+
+.kek {
+  flex: 1;
+  background: #4a90d9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scene {
+  perspective: 800px;
+}
+
+.room {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(60deg) rotateZ(45deg);
+}
+
+.floor {
+  width: 300px;
+  height: 300px;
+  background: #f0f0f0;
+  position: absolute;
+}
+
+.wall-left {
+  width: 300px;
+  height: 200px;
+  background: #ccc;
+  position: absolute;
+  top: 0;
+  transform-origin: top;
+  transform: rotateX(90deg);
+}
+
+.wall-right {
+  width: 200px;
+  height: 300px;
+  background: #b8b8b8;
+  position: absolute;
+  left: 0;
+  transform-origin: left;
+  transform: rotateY(-90deg);
+}
+
+.character {
+  width: 28px;
+  height: 80px;
+  background: #111;
+  position: absolute;
+  transform-origin: bottom center;
+  transform: rotateX(-90deg);
+  cursor: grab;
+  user-select: none;
+}
+
+.character:active {
+  cursor: grabbing;
+}

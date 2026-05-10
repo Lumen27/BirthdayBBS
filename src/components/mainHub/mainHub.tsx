@@ -11,7 +11,7 @@ import "./mainHub.css";
 
 const COLORS = ["#C0172B", "#D4AF37", "#F2A0A8", "#FFF5F5", "#7A0E1A"];
 
-type View = "intro" | "mainHub" | "congrats" | "peenargame";
+type View = "intro" | "mainHub" | "congrats" | "peenargame" | "bastagame";
 
 interface MainHubProps {
   onNavigate: (view: View) => void;
@@ -79,7 +79,7 @@ const MainHub = ({ onNavigate }: MainHubProps) => {
           Bday surprise 🎁
         </button>
         <button className="hub-btn" onClick={() => onNavigate("peenargame")}>Peenar game 😳</button>
-        <button className="hub-btn">Basta game 😾</button>
+        <button className="hub-btn" onClick={() => onNavigate("bastagame")}>Basta game 😾</button>
         <button className="hub-btn">Bobs game 👊</button>
       </div>
     </div>
