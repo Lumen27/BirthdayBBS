@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import idleImg from "../../assets/idle.png";
 import grabbedImg from "../../assets/grabbed.png";
 import cornerImg from "../../assets/corner.png";
+import yapOpenImg from "../../assets/yapopen.png";
+import yapClosedImg from "../../assets/yapclosed.png";
 import "./bastagame.css";
 
 interface BastagameProps {
@@ -35,6 +37,12 @@ type ImgState = "idle" | "grabbed" | "corner";
 const Bastagame = ({ onBack }: BastagameProps) => {
   const [pos, setPos] = useState({ x: 130, y: 130 });
   const [imgState, setImgState] = useState<ImgState>("idle");
+  const [yapOpen, setYapOpen] = useState(true);
+
+  useEffect(() => {
+    const id = setInterval(() => setYapOpen((v) => !v), 1000);
+    return () => clearInterval(id);
+  }, []);
   const posRef = useRef({ x: 130, y: 130 });
   const target = useRef(randTarget());
   const raf = useRef(0);
@@ -110,6 +118,9 @@ const Bastagame = ({ onBack }: BastagameProps) => {
       <h1 className="basta-title">Basta game 😾</h1>
       <div className="basta-area">
         <div className="kek">
+          <div className="yap-overlay-bg">
+            <img src={yapOpen ? yapOpenImg : yapClosedImg} alt="" />
+          </div>
           <div className="scene">
             <div className="room">
               <div className="floor" />
