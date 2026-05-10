@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import idleImg from "../../assets/idle.png";
+import grabbedImg from "../../assets/grabbed.png";
+import cornerImg from "../../assets/corner.png";
 import "./bastagame.css";
 
 interface BastagameProps {
@@ -28,8 +30,11 @@ const randTarget = () => ({
 
 const atRest = (x: number, y: number) => x < 3 && y < -155;
 
+type ImgState = "idle" | "grabbed" | "corner";
+
 const Bastagame = ({ onBack }: BastagameProps) => {
   const [pos, setPos] = useState({ x: 130, y: 130 });
+  const [imgState, setImgState] = useState<ImgState>("idle");
   const posRef = useRef({ x: 130, y: 130 });
   const target = useRef(randTarget());
   const raf = useRef(0);
@@ -39,6 +44,7 @@ const Bastagame = ({ onBack }: BastagameProps) => {
   const onMouseDown = (e: React.MouseEvent) => {
     e.preventDefault();
     paused.current = true;
+    setImgState("grabbed");
     drag.current = { mx: e.clientX, my: e.clientY, px: posRef.current.x, py: posRef.current.y };
   };
 
@@ -57,9 +63,11 @@ const Bastagame = ({ onBack }: BastagameProps) => {
       drag.current = null;
       if (atRest(posRef.current.x, posRef.current.y)) {
         paused.current = true;
+        setImgState("corner");
         return;
       }
       paused.current = false;
+      setImgState("idle");
       target.current = randTarget();
     };
 
@@ -95,6 +103,8 @@ const Bastagame = ({ onBack }: BastagameProps) => {
     return () => cancelAnimationFrame(raf.current);
   }, []);
 
+  const src = imgState === "grabbed" ? grabbedImg : imgState === "corner" ? cornerImg : idleImg;
+
   return (
     <div className="basta-page">
       <h1 className="basta-title">Basta game 😾</h1>
@@ -106,7 +116,7 @@ const Bastagame = ({ onBack }: BastagameProps) => {
               <div className="wall-left" />
               <div className="wall-right" />
               <img
-                src={idleImg}
+                src={src}
                 alt=""
                 className="character"
                 style={{ left: pos.x, top: pos.y }}
