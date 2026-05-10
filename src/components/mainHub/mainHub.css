@@ -80,6 +80,11 @@
   min-width: 160px;
 }
 
+.hub-btn--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 .sus-cat-corner {
   position: absolute;
   bottom: 40px;

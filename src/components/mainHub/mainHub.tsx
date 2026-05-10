@@ -80,7 +80,7 @@ const MainHub = ({ onNavigate }: MainHubProps) => {
         </button>
         <button className="hub-btn" onClick={() => onNavigate("peenargame")}>Peenar game 😳</button>
         <button className="hub-btn" onClick={() => onNavigate("bastagame")}>Basta game 😾</button>
-        <button className="hub-btn">Bobs game 👊</button>
+        <button className="hub-btn hub-btn--disabled" disabled>Bobs game 👊</button>
       </div>
     </div>
   );
